@@ -2,6 +2,7 @@
 <% @tasks.each do |task| %>
 <form action="<%= tasks_path %>" method="post" class="task<%= task.id %>">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="_method" value="patch">
   <div class="form-group form-check m-0">
     <% task.completed == true ? completed = 'checked' : completed = '' %>
     <input type="checkbox" class="form-check-input" id="task<%= task.id %>" name="checkbox" <%= completed %>>

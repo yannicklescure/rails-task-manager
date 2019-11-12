@@ -1,17 +1,19 @@
 <% task = @task %>
 <h1>Tasks#edit</h1>
 <p>Find me in app/views/tasks/edit.html.erb</p>
-<form action="<%= tasks_path %>/<%= task.id %>" method="patch" class="task<%= task.id %>">
+<form action="<%= edit_task_path %>" method="post" class="task<%= task.id %>">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="_method" value="patch">
   <div class="form-group form-check">
     <% task.completed == true ? completed = 'checked' : completed = '' %>
     <label for="task<%= task.id %>-title">Title</label>
-    <input type="text" id="task<%= task.id %>-title" class="form-control" name="title" value="<%= task.title %>">
+    <input type="text" id="task<%= task.id %>-title" class="form-control" name="task[title]" value="<%= task.title %>">
   </div>
   <div class="form-group form-check">
     <% task.completed == true ? completed = 'checked' : completed = '' %>
     <label for="task<%= task.id %>-details">Details</label>
-    <input type="text" id="task<%= task.id %>-title" class="form-control" name="title" value="<%= task.title %>">
+    <input type="text" id="task<%= task.id %>-details" class="form-control" name="task[details]" value="<%= task.details %>">
+  </div>
   <div class="form-group form-check">
     <input class="btn btn-secondary mt-3" type="submit" value="submit">
   </div>

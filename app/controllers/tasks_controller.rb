@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     # task_completed = checkbox ? true : false
     task.update(completed: checkbox)
     # raise
+    # redirect_to tasks_path
   end
 
   def show
@@ -19,6 +20,9 @@ class TasksController < ApplicationController
   end
 
   def create
+    raise
+    task = Task.create(task_params)
+    redirect_to task_path(task)
   end
 
   def edit
@@ -26,9 +30,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
-    @task.update(task_params)
-    raise
+    task = Task.find(params[:id])
+    task.update(task_params)
+    # task.update(title: params[:title], details: params[:details])
+    # raise
+    redirect_to task_path(task)
   end
 
   def destroy
