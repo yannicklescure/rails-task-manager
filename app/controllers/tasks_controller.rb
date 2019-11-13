@@ -1,15 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
-  end
-
-  def completed
-    checkbox = params[:checkbox] == 'on'
-    task = Task.find(params[:id])
-    # task_completed = checkbox ? true : false
-    task.update(completed: checkbox)
-    # raise
-    # redirect_to tasks_path
+    @tasks = Task.where({completed: false})
   end
 
   def show
@@ -20,8 +11,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    raise
     task = Task.create(task_params)
+    # raise
     redirect_to task_path(task)
   end
 
@@ -38,6 +29,24 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    # raise
+    redirect_to tasks_path
+  end
+
+  def completed
+    checkbox = params[:checkbox] == 'on'
+    task = Task.find(params[:id])
+    # task_completed = checkbox ? true : false
+    task.update(completed: checkbox)
+    # raise
+    redirect_to tasks_path
+  end
+
+  def all
+    @tasks = Task.all
+    render :index
   end
 
   private

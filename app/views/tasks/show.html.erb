@@ -1,7 +1,7 @@
 <% task = @task %>
 <div class="d-flex justify-content-between align-items-center">
   <h1><%= task.title %></h1>
-  <%= link_to 'edit Task', edit_task_path, { class: 'btn btn-primary' } %>
+  <%= link_to raw('<i class="fas fa-pen"></i> edit Task'), edit_task_path, { class: 'btn btn-primary' } %>
 </div>
 
 <div class="alert alert-secondary" role="alert">
@@ -20,7 +20,7 @@
   </div>
 <!-- <input type="submit" value="submit"> -->
 </form>
-
+<%= link_to raw('<i class="fas fa-trash-alt"></i> delete task'), task_path(@task), method: :delete %>
 <div class="my-5">
-  <%= link_to 'back to list', tasks_path %>
+  <%= link_to raw('<i class="fas fa-undo-alt"></i>&nbsp;back to list'), tasks_path %>
 </div>

@@ -2,10 +2,11 @@ Rails.application.routes.draw do
 
   # CREATE
   get '/tasks/new', to: 'tasks#new', as: 'new_task'
-  # post '/tasks', to: 'tasks#create', as: 'tasks'
+  post '/tasks', to: 'tasks#create', as: 'tasks'
 
   # READ
   get '/tasks', to: 'tasks#index'
+  get '/tasks/all', to: 'tasks#all', as: 'all_tasks'
   get '/tasks/:id', to: 'tasks#show', as: 'task'
 
   # UPDATE
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
   patch '/tasks/:id/edit', to: 'tasks#update'
   patch '/tasks', to: 'tasks#completed'
 
-  # delete '/tasks/:id', to: 'tasks#destroy'
+  delete '/tasks/:id', to: 'tasks#destroy'
 end
